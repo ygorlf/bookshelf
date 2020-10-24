@@ -79,6 +79,20 @@ export default createServer({
           }
         ]
       }
+    });
+
+    this.get('/list', () => {
+      return {
+        books: [
+          {
+            id: '7',
+            title: 'O Feijão e o Sonho',
+            author: 'Oríginess Lessa',
+            cover: 'https://images-na.ssl-images-amazon.com/images/I/411WEnQn4bL._SX345_BO1,204,203,200_.jpg',
+            sinopse: 'O feijão e o sonho narra o relacionamento conflitante entre Campos Lara e sua esposa Maria Rosa, dois seres antagônicos, mas incrivelmente unidos. Ele, professor, escritor com seis livros publicados e intelectual, porém um alienado incapaz de ser um pai e marido comprometido em assumir as mínimas obrigações do dia a dia – moradia, alimentação, vestuário. Maria Rosa, ao contrário, representa o senso prático da vida, o esteio para a família não desmoronar. Um inadaptado. Homem como ele não nascera para o casamento, para a vida do lar. Maria Rosa tinha razão, quase sempre. Ela era o Bom-Senso. Maria Rosa não era uma inimiga. Maria Rosa era o outro lado da vida. O lado em que não daria coisa nenhuma, em que ele sempre fracassaria. O duro. O difícil. O sem cadência nem rima. O do seu permanente naufrágio. Uma história humana e envolvente sobre a difícil arte de conviver.'
+          },
+        ],
+      }
     })
   },
 });

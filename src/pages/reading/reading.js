@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 
 // Components
-import Search from '../../components/search';
 import Book from '../../components/book';
 
 const Container = styled.div`
@@ -15,11 +14,11 @@ const List = styled.ul`
   margin: 0 auto;
 `;
 
-const Discover = () => {
+const Reading = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch('/discover')
+    fetch('/list')
       .then(res => res.json())
       .then(res => {
         setBooks(res.books);
@@ -29,7 +28,6 @@ const Discover = () => {
 
   return (
     <Container>
-      <Search />
       <List>
         {books.map((book) => (
           <Book
@@ -45,4 +43,4 @@ const Discover = () => {
   );
 };
 
-export default Discover;
+export default Reading;

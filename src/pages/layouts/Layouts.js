@@ -4,7 +4,12 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 
 // Pages
 import Discover from '../discover/discover';
+import Reading from '../reading/reading';
+import Finished from '../finished/finished';
 import Book from '../book/book';
+
+// Components
+import Navigation from '../../components/navigation';
 
 class Layouts extends Component {
   renderPages = () => (
@@ -14,6 +19,20 @@ class Layouts extends Component {
         path="/discover"
         render={(props) => (
           <Discover {...props} />
+        )}
+      />
+      <Route
+        exact
+        path="/reading"
+        render={(props) => (
+          <Reading {...props} />
+        )}
+      />
+      <Route
+        exact
+        path="/finished"
+        render={(props) => (
+          <Finished {...props} />
         )}
       />
       <Route
@@ -34,7 +53,20 @@ class Layouts extends Component {
   )
 
   render() {
-    return this.renderPages();
+    return (
+      <div
+        style={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          width: '70%',
+          maxWidth: '1110px',
+          margin: '2rem auto 0'
+        }}
+      >
+        <Navigation />
+        {this.renderPages()}
+      </div>
+    );
   }
 }
 
