@@ -17,14 +17,16 @@ const List = styled.ul`
 
 const Discover = () => {
   const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API}/discover`)
+    fetch(`/discover`)
       .then(res => res.json())
       .then(res => {
         setBooks(res.books);
+        setLoading(false);
       })
-      .catch(() => this.setState({ hasErrors: true }))
+      .catch((err) => { })
   }, []);
 
   const updateBooks = (book) => {
@@ -32,13 +34,21 @@ const Discover = () => {
     const newBooks = books.filter(item => item.id !== book.id);
 
     newBooks.splice(index, 0, book);
-    
+
     setBooks(newBooks);
   };
 
   const filterBooks = (books) => {
     setBooks(books);
   };
+
+  if (loading) {
+    return (
+      <Container>
+        <span data-testid='discover-loading'>Loading...</span>
+      </Container>
+    );
+  }
 
   return (
     <Container>

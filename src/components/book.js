@@ -1,5 +1,5 @@
 // Libs
-import React, { Fragment } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
 
@@ -121,7 +121,7 @@ const Book = ({
   };
 
   return (
-    <Container>
+    <Container data-testid='book-list-item'>
       <Cover src={cover} />
       <Info>
         <Header>

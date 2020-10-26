@@ -30,7 +30,6 @@ export const books = [
     sinopse: 'Uma das coletâneas de contos mais conhecida da língua inglesa, Dublinenses faz um retrato vívido e inclemente sobre a "boa e velha Dublin" do começo do século XX. Essas quinze histórias, incluindo "Arábias", "Graça" e "Os mortos", mergulham no coração da cidade natal de James Joyce, capturando não só a cadência da fala, mas também o realismo quase brutal dos sentimentos de seus habitantes. A edição ainda inclui a história "O velho vigia", escrita por Berkeley Campbell, que serviu de mote para que Joyce escrevesse o conto "As irmãs", que abre a coletânea. Publicado pela primeira vez em 1914, este livro decifra a vida da classe média católica da Irlanda, mas também lida com temas universais como decepções, frustrações e o despertar sexual. Joyce tinha 25 anos quando escreveu estes contos, considerados por muitos tanto um experimento literário quanto a obra mais acessível do autor.'
   },
   {
-    id: '7',
     title: 'O Feijão e o Sonho',
     author: 'Oríginess Lessa',
     cover: 'https://images-na.ssl-images-amazon.com/images/I/411WEnQn4bL._SX345_BO1,204,203,200_.jpg',
