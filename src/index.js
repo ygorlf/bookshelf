@@ -4,9 +4,13 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import './index.css';
 
-import './server';
+import { mockedServer } from './server/';
 
 import Layouts from './pages/layouts/Layouts';
+
+if (process.env.NODE_ENV === 'development') {
+  mockedServer(); 
+}
 
 ReactDOM.render(
   <React.StrictMode>

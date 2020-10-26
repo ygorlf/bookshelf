@@ -4,7 +4,7 @@ import { createServer, Model } from 'miragejs';
 // Data
 import { books } from './data/books';
 
-export default createServer({
+export const mockedServer = () => createServer({
   models: {
     book: Model,
   },
