@@ -54,8 +54,17 @@ export default createServer({
     this.get('/search', (schema, request) => {
       const { query } = request.queryParams;
 
+      if (!query) {
+        return {
+          books: schema.books.all().models,
+        };
+      }
+
+      const booksByTitle = schema.books.where(book => book.title.toLowerCase().includes(query)).models;
+      const booksByAuthor = schema.books.where(book => book.author.toLowerCase().includes(query)).models;
+
       return {
-        books: schema.books.where(book => book.title.toLowerCase().includes(query)).models
+        books: booksByTitle.concat(booksByAuthor),
       };
     });
   },
