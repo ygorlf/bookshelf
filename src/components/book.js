@@ -88,7 +88,7 @@ const Book = ({
   } = info;
 
   const favoriteBook = async () => {
-    await axios.patch(`/books/${id}`, {
+    await axios.patch(`${process.env.REACT_APP_API}/books/${id}`, {
       list: 'reading',
     });
 
@@ -99,7 +99,7 @@ const Book = ({
   };
 
   const finishBook = async () => {
-    await axios.patch(`/books/${id}`, {
+    await axios.patch(`${process.env.REACT_APP_API}/books/${id}`, {
       list: 'finished',
     });
 
@@ -110,7 +110,7 @@ const Book = ({
   };
 
   const removeBook = async () => {
-    await axios.patch(`/books/${id}`, {
+    await axios.patch(`${process.env.REACT_APP_API}/books/${id}`, {
       list: 'discover',
     });
 
