@@ -32,10 +32,7 @@ const Finished = () => {
         {books.map((book) => (
           <Book
             key={book.id}
-            title={book.title}
-            author={book.author}
-            cover={book.cover}
-            sinopse={book.sinopse}
+            info={book}
           />
         ))}
       </List>

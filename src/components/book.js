@@ -45,11 +45,15 @@ const Sinopse = styled.p`
 `;
 
 const Book = ({
-  title,
-  author,
-  cover,
-  sinopse,
+  info,
 }) => {
+  const {
+    title,
+    author,
+    cover,
+    sinopse,
+  } = info;
+
   return (
     <Container>
       <Cover src={cover} />
