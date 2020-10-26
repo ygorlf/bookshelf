@@ -27,19 +27,19 @@ export default createServer({
     this.get('/discover', (schema) => {
       return {
         books: schema.books.all().models
-      }
+      };
     });
 
     this.get('/reading', (schema) => {
       return {
         books: schema.books.where({ list: 'reading' }).models
-      }
+      };
     });
 
     this.get('/finished', (schema) => {
       return {
         books: schema.books.where({ list: 'finished' }).models
-      }
+      };
     });
 
     this.patch('/books/:id', (schema, request) => {
@@ -49,6 +49,14 @@ export default createServer({
       const book = schema.books.find(id);
 
       return book.update(newAttrs);
+    });
+
+    this.get('/search', (schema, request) => {
+      const { query } = request.queryParams;
+
+      return {
+        books: schema.books.where(book => book.title.toLowerCase().includes(query)).models
+      };
     });
   },
 });

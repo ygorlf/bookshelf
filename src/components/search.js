@@ -1,5 +1,5 @@
 // Libs
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
 // Assets
@@ -33,12 +33,31 @@ const Icon = styled.button`
   background-size: contain;
 `;
 
-const Search = () => {
+const Search = ({
+  filterBooks
+}) => {
+  const [value, setValue] = useState('');
+
+  const getBooks = (ev) => {
+    ev.preventDefault();
+
+    fetch(`/search?query=${value}`)
+      .then(res => res.json())
+      .then(res => {
+        filterBooks(res.books);
+      })
+      .catch(() => {})
+  };
+
   return (
-    <Form>
+    <Form onSubmit={getBooks}>
       <Input
         type='text'
         placeholder='Search books...'
+        value={value}
+        onChange={(ev) => {
+          setValue(ev.target.value);
+        }}
       />
       <Icon type='submit' value="" />
     </Form>

@@ -36,9 +36,15 @@ const Discover = () => {
     setBooks(newBooks);
   };
 
+  const filterBooks = (books) => {
+    setBooks(books);
+  };
+
   return (
     <Container>
-      <Search />
+      <Search
+        filterBooks={filterBooks}
+      />
       <List>
         {books.map((book) => (
           <Book
