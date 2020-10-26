@@ -88,14 +88,16 @@ const Book = ({
   } = info;
 
   const favoriteBook = async () => {
-    await axios.patch(`${process.env.REACT_APP_API}/books/${id}`, {
-      list: 'reading',
-    });
-
-    updateBooks({
-      ...info,
-      list: 'reading',
-    });
+    try {
+      await axios.patch(`${process.env.REACT_APP_API}/books/${id}`, {
+        list: 'reading',
+      });
+  
+      updateBooks({
+        ...info,
+        list: 'reading',
+      });
+    } catch (err) {}
   };
 
   const finishBook = async () => {
@@ -121,7 +123,7 @@ const Book = ({
   };
 
   return (
-    <Container data-testid='book-list-item'>
+    <Container data-testid='book-list-item' name={title}>
       <Cover src={cover} />
       <Info>
         <Header>
@@ -136,13 +138,21 @@ const Book = ({
           {sinopse}
         </Sinopse>
       </Info>
-      <ButtonsContainer>
+      <ButtonsContainer data-testid='buttons-container'>
         {list === 'discover' && (
-          <Button icon={add} onClick={favoriteBook} />
+          <Button
+            data-testid='favorite-button'
+            icon={add}
+            onClick={favoriteBook}
+          />
         )}
 
         {list === 'reading' && (
-          <Button icon={book} onClick={finishBook} />
+          <Button
+            data-testid='reading-button'
+            icon={book}
+            onClick={finishBook}
+          />
         )}
 
         {list === 'finished' && (
@@ -150,7 +160,11 @@ const Book = ({
         )}
 
         {(list === 'reading' || list === 'finished') && (
-          <Button icon={close} onClick={removeBook} />
+          <Button
+            data-testid='remove-button'
+            icon={close}
+            onClick={removeBook}
+          />
         )}
       </ButtonsContainer>
     </Container>

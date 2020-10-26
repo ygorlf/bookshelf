@@ -34,12 +34,15 @@ const Icon = styled.button`
 `;
 
 const Search = ({
-  filterBooks
+  filterBooks,
+  setLoading
 }) => {
   const [value, setValue] = useState('');
 
   const getBooks = (ev) => {
     ev.preventDefault();
+
+    setLoading(true);
 
     fetch(`${process.env.REACT_APP_API}/search?query=${value}`)
       .then(res => res.json())
@@ -52,6 +55,7 @@ const Search = ({
   return (
     <Form onSubmit={getBooks}>
       <Input
+        data-testid='search-input'
         type='text'
         placeholder='Search books...'
         value={value}
@@ -59,7 +63,11 @@ const Search = ({
           setValue(ev.target.value);
         }}
       />
-      <Icon type='submit' value="" />
+      <Icon
+        type='submit'
+        value=""
+        data-testid='search-button'
+      />
     </Form>
   );
 }

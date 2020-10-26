@@ -5,7 +5,6 @@ import { createServer, Model } from 'miragejs';
 import { books } from './data/books';
 
 export const mockedServer = (environment) => createServer({
-  environment,
   models: {
     book: Model,
   },
@@ -23,27 +22,25 @@ export const mockedServer = (environment) => createServer({
     }
   },
   routes() {
-    this.namespace = '/';
-
-    this.get('/discover', (schema) => {
+    this.get(`${process.env.REACT_APP_API}/discover`, (schema) => {
       return {
         books: schema.books.all().models
       };
     });
 
-    this.get('/reading', (schema) => {
+    this.get(`${process.env.REACT_APP_API}/reading`, (schema) => {
       return {
         books: schema.books.where({ list: 'reading' }).models
       };
     });
 
-    this.get('/finished', (schema) => {
+    this.get(`${process.env.REACT_APP_API}/finished`, (schema) => {
       return {
         books: schema.books.where({ list: 'finished' }).models
       };
     });
 
-    this.patch('/books/:id', (schema, request) => {
+    this.patch(`${process.env.REACT_APP_API}/books/:id`, (schema, request) => {
       const newAttrs = JSON.parse(request.requestBody);
 
       const id = request.params.id;
@@ -52,7 +49,7 @@ export const mockedServer = (environment) => createServer({
       return book.update(newAttrs);
     });
 
-    this.get('/search', (schema, request) => {
+    this.get(`${process.env.REACT_APP_API}/search`, (schema, request) => {
       const { query } = request.queryParams;
 
       if (!query) {

@@ -20,7 +20,7 @@ const Discover = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`/discover`)
+    fetch(`${process.env.REACT_APP_API}/discover`)
       .then(res => res.json())
       .then(res => {
         setBooks(res.books);
@@ -40,30 +40,29 @@ const Discover = () => {
 
   const filterBooks = (books) => {
     setBooks(books);
+    setLoading(false);
   };
-
-  if (loading) {
-    return (
-      <Container>
-        <span data-testid='discover-loading'>Loading...</span>
-      </Container>
-    );
-  }
 
   return (
     <Container>
       <Search
         filterBooks={filterBooks}
+        setLoading={setLoading}
       />
-      <List>
-        {books.map((book) => (
-          <Book
-            key={book.id}
-            info={book}
-            updateBooks={updateBooks}
-          />
-        ))}
-      </List>
+      {loading && (
+        <span data-testid='discover-loading'>Loading...</span>
+      )}
+      {!loading && (
+        <List data-testid='discover-list'>
+          {books.map((book) => (
+            <Book
+              key={book.id}
+              info={book}
+              updateBooks={updateBooks}
+            />
+          ))}
+        </List>
+      )}
     </Container>
   );
 };
