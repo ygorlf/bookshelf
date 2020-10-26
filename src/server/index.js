@@ -22,7 +22,7 @@ export default createServer({
     }
   },
   routes() {
-    this.namespace = '';
+    this.namespace = '/';
 
     this.get('/discover', (schema) => {
       return {

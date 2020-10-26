@@ -41,7 +41,7 @@ const Search = ({
   const getBooks = (ev) => {
     ev.preventDefault();
 
-    fetch(`/search?query=${value}`)
+    fetch(`${process.env.REACT_APP_API}/search?query=${value}`)
       .then(res => res.json())
       .then(res => {
         filterBooks(res.books);

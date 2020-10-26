@@ -18,7 +18,7 @@ const Finished = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch('/finished')
+    fetch(`${process.env.REACT_APP_API}/finished`)
       .then(res => res.json())
       .then(res => {
         setBooks(res.books);

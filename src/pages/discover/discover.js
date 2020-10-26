@@ -19,7 +19,7 @@ const Discover = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch('/discover')
+    fetch(`${process.env.REACT_APP_API}/discover`)
       .then(res => res.json())
       .then(res => {
         setBooks(res.books);

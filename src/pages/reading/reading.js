@@ -18,7 +18,7 @@ const Reading = () => {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    fetch('/reading')
+    fetch(`${process.env.REACT_APP_API}/reading`)
       .then(res => res.json())
       .then(res => {
         setBooks(res.books);
