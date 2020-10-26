@@ -16,8 +16,7 @@ export default createServer({
         'book',
         {
           ...element,
-          favorite: false,
-          finished: false,
+          list: 'discover',
         }
       )
     }
@@ -31,10 +30,25 @@ export default createServer({
       }
     });
 
-    this.get('/list', (schema) => {
+    this.get('/reading', (schema) => {
       return {
-        books: schema.books.where({ favorite: true }).models
+        books: schema.books.where({ list: 'reading' }).models
       }
+    });
+
+    this.get('/finished', (schema) => {
+      return {
+        books: schema.books.where({ list: 'finished' }).models
+      }
+    });
+
+    this.patch('/books/:id', (schema, request) => {
+      const newAttrs = JSON.parse(request.requestBody);
+
+      const id = request.params.id;
+      const book = schema.books.find(id);
+
+      return book.update(newAttrs);
     });
   },
 });

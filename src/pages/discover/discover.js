@@ -25,7 +25,16 @@ const Discover = () => {
         setBooks(res.books);
       })
       .catch(() => this.setState({ hasErrors: true }))
-  }, [])
+  }, []);
+
+  const updateBooks = (book) => {
+    const index = books.findIndex(x => x.id === book.id);
+    const newBooks = books.filter(item => item.id !== book.id);
+
+    newBooks.splice(index, 0, book);
+    
+    setBooks(newBooks);
+  };
 
   return (
     <Container>
@@ -35,6 +44,7 @@ const Discover = () => {
           <Book
             key={book.id}
             info={book}
+            updateBooks={updateBooks}
           />
         ))}
       </List>

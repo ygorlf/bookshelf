@@ -24,7 +24,12 @@ const Finished = () => {
         setBooks(res.books);
       })
       .catch(() => this.setState({ hasErrors: true }))
-  }, [])
+  }, []);
+
+  const updateBooks = (book) => {
+    const newBooks = books.filter(item => item.id !== book.id);
+    setBooks(newBooks);
+  };
 
   return (
     <Container>
@@ -33,6 +38,7 @@ const Finished = () => {
           <Book
             key={book.id}
             info={book}
+            updateBooks={updateBooks}
           />
         ))}
       </List>
